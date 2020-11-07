@@ -28,11 +28,10 @@ void setup() {
 }
 
 void loop() {
+
     sonarServo.scan();
     delay(800);
     
-//  robot.distance();
-/* 
   robot.Forward();
   delay(1000);
   robot.Backward();
@@ -41,5 +40,5 @@ void loop() {
   delay(1000);
   robot.Left();
   delay(1000);
-  */
+  robot.Stop();
 }
