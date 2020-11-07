@@ -1,10 +1,10 @@
-#include"Motor.h"
 #include"Robot.h"
 #include"Arduino.h"
 
-Robot::Robot(Motor *right, Motor *left){
+Robot::Robot(Motor *right, Motor *left, SonarServo *sonarServo){
   _rightMotor = right;
   _leftMotor = left;
+  _sonarServo = sonarServo;
 }
 
 void Robot::debug(bool d = true)
@@ -12,6 +12,15 @@ void Robot::debug(bool d = true)
   _debug = d;
   _rightMotor->debug(d);
   _leftMotor->debug(d);
+}
+
+long Robot::distance()
+{
+  long distance;
+  
+  distance = _sonarServo->distance();
+  Serial.print("distance: ");
+  Serial.println(distance);
 }
   
 void Robot::setup()
@@ -23,12 +32,12 @@ void Robot::setup()
   _leftMotor->setup();
 }
 
-void Robot::Left(int s=255){
+void Robot::Left(int s = 255){
   _rightMotor->Forward(s);
   _leftMotor->Backward(s);
 }
 
-void Robot::Right(int s=255){
+void Robot::Right(int s = 255){
   _rightMotor->Backward(s);
   _leftMotor->Forward(s);
 }
