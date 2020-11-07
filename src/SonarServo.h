@@ -6,16 +6,19 @@
 
 class SonarServo{
   public:
-    SonarServo(int servoPin, Ultrasonic *sonar);
+    SonarServo(int servoPin, int trigerPin, int echoPin);
     
     void Angle(int angle);
     long distance();
     void setup();
   
   private:
+    int _echoPin;
+    int _trigerPin;
+    int _servoPin;
 
     int _currentServoAngle;
     Ultrasonic *_sonar;
-    Servo _servo;
+    Servo *_servo;
 };
 #endif

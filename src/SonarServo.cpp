@@ -1,24 +1,30 @@
 #include "SonarServo.h"
 
-SonarServo::SonarServo(int servoPin, Ultrasonic *sonar)
+SonarServo::SonarServo(int servoPin, int trigerPin, int echoPin)
 {
-    _sonar = sonar;
-    _servo.attach(servoPin);
+    _trigerPin = trigerPin;
+    _echoPin = echoPin;
+    _servoPin = servoPin;
 }
 
 void SonarServo::setup()
 {
-    _servo.write(90);
+     Servo servo;
+    _servo = &servo;
+    
+    Ultrasonic sonar(_trigerPin, _echoPin);
+    _sonar = &sonar;
+    _servo->attach(_servoPin);
+    _servo->write(90);
 }
 
 long SonarServo::distance()
 {
-//    return 0;
     return _sonar->Ranging(1);
 }
 
 void SonarServo::Angle(int angle)
 {
     _currentServoAngle = angle;
-    _servo.write(angle);
+    _servo->write(angle);
 }

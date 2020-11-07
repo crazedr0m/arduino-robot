@@ -28,6 +28,7 @@ void Robot::setup()
   if (_debug) {
     Serial.println("Robot setup");
   }
+  _sonarServo->setup();
   _rightMotor->setup();
   _leftMotor->setup();
 }

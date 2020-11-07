@@ -12,8 +12,7 @@ int sonarTriger = 13; // Сонар тригер
 int sonarEcho = 12; // Сонар эхо
 int sonarServoPin = 5; // Серво привод для сонара
 
-Ultrasonic sonar(sonarTriger, sonarEcho);
-SonarServo sonarServo(sonarServoPin, &sonar);
+SonarServo sonarServo(sonarServoPin, sonarTriger, sonarEcho);
 
 Motor motorRight(MotorRightForward, MotorRightBack, MotorRightSpeed);
 Motor motorLeft(MotorLeftForward, MotorLeftBack, MotorLeftSpeed);
@@ -22,6 +21,7 @@ Robot robot(&motorRight, &motorLeft, &sonarServo);
 
 void setup() {
     Serial.begin(115200);
+    robot.setup();
 /*    robot.debug();
     robot.setup();
     
