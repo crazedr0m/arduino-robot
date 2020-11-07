@@ -21,22 +21,14 @@ Robot robot(&motorRight, &motorLeft, &sonarServo);
 
 void setup() {
     Serial.begin(115200);
-    robot.setup();
-/*    robot.debug();
+    robot.debug();
     robot.setup();
     
     robot.Stop();
-    */
 }
 
 void loop() {
-    sonarServo.Angle(90);
-    delay(800);
-    sonarServo.Angle(0);
-    delay(800);
-    sonarServo.Angle(90);
-    delay(800);
-    sonarServo.Angle(180);
+    sonarServo.scan();
     delay(800);
     
 //  robot.distance();

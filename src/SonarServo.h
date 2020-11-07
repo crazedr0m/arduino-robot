@@ -9,7 +9,9 @@ class SonarServo{
     SonarServo(int servoPin, int trigerPin, int echoPin);
     
     void Angle(int angle);
+    void scan();
     long distance();
+
     void setup();
   
   private:
@@ -20,5 +22,7 @@ class SonarServo{
     int _currentServoAngle;
     Ultrasonic *_sonar;
     Servo *_servo;
+    void oneScan(int angle, int wait);
+
 };
 #endif
